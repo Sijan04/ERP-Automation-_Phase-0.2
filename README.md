@@ -16,14 +16,14 @@ The project is built with **Python, Selenium, and Faker** to perform automated t
 - **Reusable Test Scripts** – Each module has an independent Python script for modular testing.
 
 ## 📂 Project Structure
-├── Access_HRM.py # Test script for accessing HRM module
-├── Add_Class.py # Add new classes using Faker data
-├── Delete_From_List.py # Delete specific entry from a list
-├── Delete_List.py # Delete full list data
-├── Employee_Create.py # Employee creation with fake data
-├── Login.py # Login automation
-├── requirements.txt # Dependencies list
-└── .idea/ # Project settings (PyCharm/IDE configs)
+1.Access_HRM.py # Test script for accessing HRM module
+2.Add_Class.py # Add new classes using Faker data
+3.Delete_From_List.py # Delete specific entry from a list
+4.Delete_List.py # Delete full list data
+5.Employee_Create.py # Employee creation with fake data
+6.Login.py # Login automation
+7.requirements.txt # Dependencies list
+8.idea/ # Project settings (PyCharm/IDE configs)
 
 🛠️ Tech Stack
 
