@@ -298,7 +298,7 @@ except Exception as e:
     print("❌ Error:", e)
 
 finally:
-    time.sleep(400)
+    time.sleep(4)
     driver.quit()
     print("✅ Browser closed")
 
