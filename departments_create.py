@@ -40,59 +40,43 @@ try:
     employee_button.click()
     print("✅ Clicked Employee dropdown")
 
-    # Click Employee Grades
-    employee_grades_link = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, '//div[text()="Employee Grades"]/ancestor::a')
+    # Click Departments
+    departments_link = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '//a[@href="/hrm/departments" and .//div[text()="Departments"]]')
     ))
-    employee_grades_link.click()
-    print("✅ Clicked Employee Grades")
+    departments_link.click()
+    print("✅ Clicked Departments")
 
-    # Click "Add Employee Grade" button
-    add_grade_button = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, '//button[contains(., "Add Employee Grade")]')
+    # Click "Add Department" button
+    add_department_button = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '//button[contains(., "Add Department")]')
     ))
-    add_grade_button.click()
-    print("✅ Clicked Add Employee Grade button")
+    add_department_button.click()
+    print("✅ Clicked Add Department button")
 
-    # Generate fake name and salaries
-    grade_name = fake.job()  # Example: "Software Engineer"
-    min_salary = random.randint(20000, 40000)
-    max_salary = random.randint(50000, 90000)
+    # Generate fake department name
+    department_name = fake.company()
 
-    # Enter the grade name
+    # Enter the department name
     name_field = wait.until(EC.visibility_of_element_located(
-        (By.XPATH, '//input[@name="name" and @placeholder="Enter section name"]')
+        (By.XPATH, '//input[@name="name" and @placeholder="Enter department name"]')
     ))
     name_field.clear()
-    name_field.send_keys(grade_name)
-    print(f"✅ Entered grade name: {grade_name}")
+    name_field.send_keys(department_name)
+    print(f"✅ Entered department name: {department_name}")
 
-    # Enter min salary
-    min_salary_field = wait.until(EC.visibility_of_element_located(
-        (By.XPATH, '//input[@name="min_salary"]')
-    ))
-    min_salary_field.clear()
-    min_salary_field.send_keys(str(min_salary))
-    print(f"✅ Entered Min Salary: {min_salary}")
+    time.sleep(1)
 
-    # Enter max salary
-    max_salary_field = wait.until(EC.visibility_of_element_located(
-        (By.XPATH, '//input[@name="max_salary"]')
-    ))
-    max_salary_field.clear()
-    max_salary_field.send_keys(str(max_salary))
-    print(f"✅ Entered Max Salary: {max_salary}")
-
-    time.sleep(8)
     # Click Save/Submit button
     submit_button = wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//button[normalize-space(text())="Add"]')
     ))
     submit_button.click()
-    print("✅ Submitted Employee Grade form")
+    print("✅ Submitted Department form")
+
 
 except Exception as e:
     print("❌ Error:", e)
 
-time.sleep(10)
+time.sleep(3)
 driver.quit()
