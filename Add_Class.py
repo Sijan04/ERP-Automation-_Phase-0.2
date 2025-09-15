@@ -1,4 +1,4 @@
-# #After Login go into the HRM Module after that create class and submit form and add to the list
+# #After Login-go into the HRM Module after that create class and submit form and add to the list
 
 
 from selenium import webdriver
@@ -9,7 +9,7 @@ from faker import Faker
 import time
 
 # Setup Faker
-fake = Faker()           #Fake data generator add
+fake = Faker()           #Fake data-generator-add
 
 driver = webdriver.Chrome()
 driver.get("https://amarsolution.xyz/login")
