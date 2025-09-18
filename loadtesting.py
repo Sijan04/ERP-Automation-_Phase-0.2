@@ -1,20 +1,3 @@
-# from locust import task, between, FastHttpUser
-# import subprocess
-#
-#
-# class SeleniumUser(FastHttpUser):
-#     wait_time = between(5, 10)  # Wait between tasks to simulate user behavior
-#
-#     @task
-#     def run_shift_creation(self):
-#         print("🚀 Running Selenium shift creation script...")
-#         result = subprocess.run(["python", "attendance_shift.py"], capture_output=True, text=True)
-#
-#         if result.returncode == 0:
-#             print("✅ Selenium script completed successfully")
-#         else:
-#             print(f"❌ Error in Selenium script: {result.stderr}")
-
 
 
 
