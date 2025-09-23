@@ -1,9 +1,6 @@
 
-
-
 from locust import HttpUser, task, between
 from faker import Faker
-
 fake = Faker()
 
 class WebsiteUser(HttpUser):
@@ -27,3 +24,6 @@ class WebsiteUser(HttpUser):
                 response.success()
             else:
                 response.failure(f"Failed to create shift: {response.text}")
+
+
+
