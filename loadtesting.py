@@ -24,6 +24,3 @@ class WebsiteUser(HttpUser):
                 response.success()
             else:
                 response.failure(f"Failed to create shift: {response.text}")
-
-
-

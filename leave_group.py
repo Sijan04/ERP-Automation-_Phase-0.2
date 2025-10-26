@@ -18,6 +18,7 @@ driver.maximize_window()
 
 try:
     # Login
+
     driver.find_element(By.NAME, "email").send_keys("admin@gmail.com")
     driver.find_element(By.NAME, "password").send_keys("password")
     driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
@@ -73,39 +74,29 @@ try:
     ))
     medical_leave_option.click()
 
-
-    # Fill in leave_count
-
+    # Fill in leave_count using spinner arrows
     leave_count = fake.random_int(min=1, max=10)
 
-    # ✅ Wait for input field to be interactable
     leave_count_input = wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//input[@placeholder="Enter Leave Count"]')
     ))
 
-    # ✅ Scroll into view just in case
-    driver.execute_script("arguments[0].scrollIntoView(true);", leave_count_input)
-    time.sleep(0.5)
+    leave_count_input.click()
+    leave_count_input.clear()
+    leave_count_input.send_keys(str(leave_count))
 
-    # ✅ Use JavaScript to ensure it's accepted by frontend
-    driver.execute_script("""
-        arguments[0].value = arguments[1];
-        arguments[0].dispatchEvent(new Event('input', { bubbles: true }));
-    """, leave_count_input, str(leave_count))
-
-    print(f"✅ Entered Leave Count: {leave_count}")
-
-    time.sleep(8)
-
-    # --- Click Add Button ---
-    add_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Add"]')))
+    # --- Submit the form ---
+    add_button = wait.until(
+        EC.element_to_be_clickable((By.XPATH, '//button[@type="submit" and text()="Add"]'))
+    )
     add_button.click()
-    print("✅ Form Submitted")
+    print("✅ Form successfully submitted!")
+
     time.sleep(8)
 except Exception as e:
     print("❌ Error:", e)
 
-time.sleep(3)
+time.sleep(6)
 driver.quit()
 
 

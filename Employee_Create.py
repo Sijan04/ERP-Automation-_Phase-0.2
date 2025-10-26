@@ -179,8 +179,6 @@ try:
         (By.XPATH, '//div[normalize-space()="Cold Storage"]')
     ))
     cold_storage_option.click()
-
-
     # 8. Click Shift dropdown
     Shift_dropdown = wait.until(EC.element_to_be_clickable(
         (By.XPATH, '//button[contains(.,"Shift")]')

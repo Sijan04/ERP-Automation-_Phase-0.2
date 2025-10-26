@@ -94,5 +94,5 @@ try:
 except Exception as e:
     print("❌ Error:", e)
 
-time.sleep(10)
-driver.quit()
+time.sleep(25)
+# driver.quit()
