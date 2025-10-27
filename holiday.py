@@ -1,5 +1,8 @@
 # Holiday
 
+
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -59,26 +62,54 @@ try:
     holiday_name_input.send_keys(holiday_name)
     print(f"✅ Holiday name entered: {holiday_name}")
 
-    # Click From Date picker button
-    from_date_button = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, '//button[contains(.,"Pick a date")][1]')
+
+    # Click the date picker button to open the calendar #Calander Select Code From Date
+
+    date_picker_opener = wait.until(EC.element_to_be_clickable((
+        By.XPATH, '//button[contains(@aria-haspopup,"dialog")]'
+    )))
+    date_picker_opener.click()
+
+    # Click #the-day 26
+
+    target_day = "26"
+    day_button = wait.until(EC.element_to_be_clickable((
+        By.XPATH, f'//button[@name="day" and normalize-space()="{target_day}"]'
+    )))
+    day_button.click()
+
+    # Click the To Date picker button to open the calendar
+    to_date_picker = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '(//button[contains(@aria-haspopup,"dialog")])[2]')
     ))
-    from_date_button.click()
-    print("✅ Opened From Date picker")
+    to_date_picker.click()
 
-    # Select today's date in calendar (Mui Date Picker)
-    today_date = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, '//button[contains(@class, "MuiPickersDay-root") and @tabindex="0"]')
+    # Select the-day 26 again or any target day
+    day_button = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, f'//button[@name="day" and normalize-space()="{target_day}"]')
     ))
-    driver.execute_script("arguments[0].click();", today_date)
-    print("✅ Selected today as From Date")
+    day_button.click()
+    print(f"✅ Selected To Date: {target_day}")
+
+    # Generate fake note text
+    note_text = fake.sentence(nb_words=6)
+
+    # Enter the holiday note
+    note_field = wait.until(EC.visibility_of_element_located(
+        (By.XPATH, '//input[@name="holidays.0.note" and @placeholder="Enter note"]')
+    ))
+    note_field.clear()
+    note_field.send_keys(note_text)
+    print(f"✅ Entered note: {note_text}")
 
 
 
-
-
-
-
+    # Click Save/Submit button
+    submit_button = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, '//button[normalize-space(text())="Save"]')
+    ))
+    submit_button.click()
+    print("✅ Submitted Designation form")
 
 
 except Exception as e:
