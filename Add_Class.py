@@ -1,28 +1,36 @@
-# #After Login-go into the HRM Module after that create class and submit form and add to the list
-
-
+import json, time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from faker import Faker
-import time
 
-# Setup Faker
-fake = Faker()           #Fake data-generator-add
+fake = Faker()
 
 driver = webdriver.Chrome()
-driver.get("https://amarsolution.xyz/login")
+driver.get("https://amarsolution.xyz/")
 driver.maximize_window()
 
+wait = WebDriverWait(driver, 10)
+
+# ✅ Load LocalStorage session
 try:
-    # Login
-    driver.find_element(By.NAME, "email").send_keys("admin@gmail.com")
-    driver.find_element(By.NAME, "password").send_keys("password")
-    driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+    with open("localstorage.json", "r") as f:
+        session_data = json.load(f)
 
-    wait = WebDriverWait(driver, 15)
+    for key, value in session_data.items():
+        driver.execute_script(f"localStorage.setItem('{key}', '{value}');")
 
+    print("🔐 Session loaded from LocalStorage")
+
+    # ✅ Refresh to apply session (this was missing in your code)
+    driver.refresh()
+    time.sleep(0.5)
+
+except Exception as e:
+    print("⚠️ Session not found:", e)
+
+try:
     # Click HRM card
     hrm_card = wait.until(EC.visibility_of_element_located(
         (By.XPATH, '//div[contains(@class, "bg-card")]//img[contains(@src, "hrm")]/ancestor::div[contains(@class, "rounded-lg")]')
@@ -53,7 +61,7 @@ try:
 
     # Generate fake employee class name
     fake_class_name = fake.job()   # Example: "Software Engineer"
-    # You can also use: fake.word(), fake.company(), etc.
+
 
     # Enter the employee class name
     input_field = wait.until(EC.visibility_of_element_located(
