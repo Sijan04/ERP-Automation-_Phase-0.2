@@ -114,11 +114,11 @@ from dotenv import load_dotenv
 import json, time, os
 
 # ✅ Load .env
-load_dotenv()
+load_dotenv(".env.local")
 
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
-
+print(EMAIL, PASSWORD)
 driver = webdriver.Chrome()
 driver.get("https://amarsolution.xyz/login")
 driver.maximize_window()
@@ -165,17 +165,71 @@ finally:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from dotenv import load_dotenv
+# import json, time, os
+#
+# load_dotenv(".env.local")
+#
+# EMAIL = os.getenv("EMAIL")
+# PASSWORD = os.getenv("PASSWORD")
+# print(EMAIL, PASSWORD)
+# driver = webdriver.Chrome()
+# driver.get("https://amarsolution.xyz/login")
+# driver.maximize_window()
+#
+# try:
+#     WebDriverWait(driver, 10).until(
+#         EC.presence_of_element_located((By.NAME, "email"))
+#     ).send_keys(EMAIL)
+#
+#     driver.find_element(By.NAME, "password").send_keys(PASSWORD)
+#     driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
+#
+#     WebDriverWait(driver, 20).until(
+#         EC.visibility_of_element_located((By.XPATH, '//div[contains(text(), "HRM")]'))
+#     )
+#     print("✅ Login success!")
+#
+#     time.sleep(2)
+#
+#     # --- Debug cookies ---
+#     cookies = driver.get_cookies()
+#     print("DEBUG: cookies =", cookies)
+#     if cookies is None:
+#         print("❌ get_cookies() returned None!")
+#
+#     # --- Debug local storage ---
+#     local_storage = driver.execute_script(
+#         "var out={}; for(var i=0;i<localStorage.length;i++){"
+#         "var k=localStorage.key(i); out[k]=localStorage.getItem(k);} return out;"
+#     )
+#     print("DEBUG: local_storage =", local_storage)
+#     if local_storage is None:
+#         print("❌ localStorage returned None!")
+#
+#     # ✅ Save only if not None
+#     if cookies:
+#         with open("cookies.json", "w") as f:
+#             json.dump(cookies, f, indent=4)
+#     if local_storage:
+#         with open("localstorage.json", "w") as f:
+#             json.dump(local_storage, f, indent=4)
+#
+#     print("📦 Session saved successfully!")
+#
+# except Exception as e:
+#     print("Login failed:", e)
+#
+#
+#
+#
+#
+#
+#
 
 
 
