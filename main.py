@@ -8,15 +8,28 @@
 # # accessing and printing value
 # print(os.getenv("MY_KEY"))
 
+#
+# from dotenv import load_dotenv
+# import os
+#
+# # Load environment variables from .env file
+# load_dotenv()
+#
+# # Get the credentials
+# EMAIL = os.getenv("EMAIL")
+# PASSWORD = os.getenv("PASSWORD")
+#
+# print(EMAIL, PASSWORD)
+
 
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
-load_dotenv()
+# 👇 Explicitly specify your env file name
+load_dotenv(".env.local")
 
-# Get the credentials
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
 
-print(EMAIL, PASSWORD)
+print("EMAIL:", EMAIL)
+print("PASSWORD:", PASSWORD)
