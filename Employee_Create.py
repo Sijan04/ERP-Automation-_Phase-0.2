@@ -420,7 +420,7 @@ try:
 
     # ✅ Organization
     wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(.,"Organization")]'))).click()
-    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[text()="xyz"]'))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//div[text()="amarsolution"]'))).click()
 
     # ✅ Work Place
     wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(.,"Work Place")]'))).click()
@@ -479,13 +479,13 @@ try:
     driver.find_element(By.CSS_SELECTOR, 'button[type="submit"]').click()
     print(f"✅ Employee Added: {first_name} {last_name} ({email})")
 
-    time.sleep(2)
+    time.sleep(4)
 
 
 except Exception as e:
     print("❌ Error:", e)
 
 finally:
-    time.sleep(4)
+    time.sleep(2)
     driver.quit()
     print("✅ Test Finished")
