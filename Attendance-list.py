@@ -150,29 +150,49 @@ try:
     add_attendance_button.click()
     print("✅ Clicked 'Add Attendance' button")
 
+    # # ✅ Type in employee search box
+    # search_input = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@placeholder='Search and select options']")))
+    # search_input.click()
+    # search_input.clear()
+    # search_input.send_keys("Amanda Powell")
+    # print("✅ Typed 'Amanda Powell'")
+    #
+    # # ✅ Wait for dropdown list to load fully
+    # time.sleep(1.5)
+    #
+    # # ✅ Try clicking the Amanda Powell option with JS (more reliable)
+    # amanda_option = wait.until(EC.presence_of_element_located((By.XPATH,"//div[contains(text(), 'Amanda Powell')]")))
+    # driver.execute_script("arguments[0].click();", amanda_option)
+    # print("✅ Selected employee: Amanda Powell")
+
     # ✅ Type in employee search box
-    search_input = wait.until(EC.element_to_be_clickable((By.XPATH,
-        "//input[@placeholder='Search and select options']"
-    )))
+    search_input = wait.until(EC.element_to_be_clickable((By.XPATH,"//input[@placeholder='Search and select options']")))
     search_input.click()
     search_input.clear()
-    search_input.send_keys("Sabbir Alam")
-    print("✅ Typed 'Sabbir Alam'")
+    search_input.send_keys("Amanda Powell")
+    print("✅ Typed 'Amanda Powell'")
 
-    # ✅ Wait for dropdown list to load fully
+    # ✅ Wait for dropdown list to appear
 
     time.sleep(1.5)
 
-    # ✅ Try clicking the Sabbir Alam option with JS (more reliable)
-    sabbir_option = wait.until(EC.presence_of_element_located((By.XPATH,
-        "//div[contains(text(), 'Sabbir Alam')]"
-    )))
-    driver.execute_script("arguments[0].click();", sabbir_option)
-    print("✅ Selected employee: Sabbir Alam")
+    # ✅ Select Amanda Powell (161) — using 'normalize-space' to handle spaces
+    amanda_option = wait.until(EC.element_to_be_clickable((By.XPATH,"//div[normalize-space(text())='Amanda Powell (161)']")))
+    driver.execute_script("arguments[0].click();", amanda_option)
+    print("✅ Selected employee: Amanda Powell (161)")
 
+    # ✅ Click outside (to close dropdown)
+    driver.execute_script("document.body.click()")
+    time.sleep(0.5)
 
+    # ✅ Now click the 'Check In' submit button inside the form
+    check_in_button = wait.until(EC.element_to_be_clickable((By.XPATH,
+                                                             "//form//button[normalize-space(text())='Check In']"
+                                                             )))
+    driver.execute_script("arguments[0].click();", check_in_button)
+    print("✅ Clicked 'Check In' submit button successfully!")
 
-
+    time.sleep(20)
 
 
 #not complete-------------------------------------------
